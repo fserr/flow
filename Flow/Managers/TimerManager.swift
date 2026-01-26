@@ -66,6 +66,8 @@ final class TimerManager: ObservableObject {
 
     func reset() {
         pause()
+        currentPhase = .work
+        completedSessions = 0
         resetToCurrentPhase()
     }
 
