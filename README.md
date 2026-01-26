@@ -12,8 +12,11 @@ This is a clone of [Flow](https://flowapp.info), the Pomodoro app. I wanted some
 
 ## Install
 
+Xcode is required.
+
 ```bash
 open Flow2.xcodeproj
 # Press Cmd+R to build and run
 # Or build Release and copy Flow2.app to /Applications
 ```
+

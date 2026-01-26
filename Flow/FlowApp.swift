@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         if let button = statusItem?.button {
             let hostingView = NSHostingView(rootView: MenuBarView(timerManager: TimerManager.shared))
-            hostingView.frame = NSRect(x: 0, y: 0, width: 46, height: 22)
+            hostingView.frame = NSRect(x: 0, y: 0, width: 56, height: 22)
 
             button.addSubview(hostingView)
             button.frame = hostingView.frame

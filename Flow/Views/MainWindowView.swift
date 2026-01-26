@@ -9,7 +9,7 @@ struct MainWindowView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 16) {
-                titleLabel
+                // titleLabel
                 timerDisplay
                 sessionDots
                 controlButtons

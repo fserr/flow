@@ -25,7 +25,7 @@ enum TimerPhase: String {
         case .work:
             return .clear
         case .shortBreak, .longBreak:
-            return Color(red: 0.66, green: 0.84, blue: 0.73) // #A8D5BA
+            return Color(red: 0.28, green: 0.55, blue: 0.47) // #488d77
         }
     }
 }
