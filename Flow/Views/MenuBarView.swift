@@ -2,10 +2,15 @@ import SwiftUI
 
 struct MenuBarView: View {
     @ObservedObject var timerManager: TimerManager
+    @Environment(\.colorScheme) var colorScheme
+
+    private var borderColor: Color {
+        colorScheme == .dark ? Color.white : Color.black
+    }
 
     var body: some View {
         Text(timerManager.formattedTime)
-            .font(.system(size: 11, weight: .regular, design: .default))
+            .font(.system(size: 11, weight: .medium, design: .default))
             .padding(.horizontal, 4)
             .padding(.vertical, 1)
             .background(
@@ -14,7 +19,7 @@ struct MenuBarView: View {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 6)
-                    .stroke(Color.white.opacity(0.5), lineWidth: timerManager.currentPhase == .work ? 0.5 : 0)
+                    .stroke(borderColor, lineWidth: timerManager.currentPhase == .work ? 0.5 : 0)
             )
     }
 }
