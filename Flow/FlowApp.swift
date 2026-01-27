@@ -19,10 +19,32 @@ class BorderlessWindow: NSWindow {
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem?
     private var mainWindow: NSWindow?
+    private var keyMonitor: Any?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupMenuBar()
         createAndShowMainWindow()
+        setupKeyMonitor()
+    }
+
+    private func setupKeyMonitor() {
+        keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            guard self?.mainWindow?.isKeyWindow == true else { return event }
+
+            // Spacebar - toggle timer
+            if event.keyCode == 49 {
+                TimerManager.shared.toggle()
+                return nil
+            }
+
+            // CMD+R - reset timer
+            if event.keyCode == 15 && event.modifierFlags.contains(.command) {
+                TimerManager.shared.reset()
+                return nil
+            }
+
+            return event
+        }
     }
 
     private func setupMenuBar() {
