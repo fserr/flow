@@ -126,6 +126,6 @@ final class TimerManager: ObservableObject {
     }
 
     private func playCompletionSound() {
-        NSSound.beep()
+        NSSound(named: "Blow")?.play()
     }
 }
