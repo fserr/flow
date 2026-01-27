@@ -3,4 +3,6 @@
 xcuserdata/
 DerivedData/
 .build/
+build/
+*.dmg
 images-for-claude/

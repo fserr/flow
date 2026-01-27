@@ -1,5 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     '/Users/federicoserra/Documents/Dev/flow/build/Flow2.app/Contents/MacOS/Flow2'
-relocations:     []
-...
