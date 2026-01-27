@@ -73,7 +73,7 @@ struct MainWindowView: View {
     @ViewBuilder
     private var sessionDots: some View {
         if timerManager.currentPhase == .longBreak {
-            Text("UNWIND")
+            Text("~   Unwind   ~")
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(.white)
         } else {

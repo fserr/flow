@@ -4,13 +4,6 @@ A minimal Pomodoro timer for macOS.
 
 This is a clone of [Flow](https://flowapp.info), the Pomodoro app. I wanted something similar with minimal features and the customization options without paying for a subscription plan. The entire app was written by Claude Code (Opus 4.5) - I just described what I wanted.
 
-## Features
-
-- Menu bar timer (left-click: show window, right-click: start/pause)
-- Work sessions, short breaks, long breaks
-- Configurable durations
-- Keyboard shortcuts: Space (play/pause), Cmd+R (reset), Cmd+→ (skip)
-
 ## How it does look like
 
 <p>
@@ -18,6 +11,13 @@ This is a clone of [Flow](https://flowapp.info), the Pomodoro app. I wanted some
   &nbsp;&nbsp;
   <img src="screenshots/break.png" width="280" alt="Break">
 </p>
+
+## Features
+
+- Menu bar timer (left-click: show window, right-click: start/pause)
+- Work sessions, short breaks, long breaks
+- Configurable durations
+- Keyboard shortcuts: Space (play/pause), Cmd+R (reset), Cmd+→ (skip)
 
 ## Install
 
