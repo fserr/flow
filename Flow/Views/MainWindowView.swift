@@ -165,7 +165,7 @@ struct MainWindowView: View {
 
         // Work Duration submenu
         let workMenu = NSMenu()
-        let workPresets = [15, 20, 25, 30, 45, 60, 90]
+        let workPresets = [25, 50, 80, 90]
         let workIsCustom = !workPresets.contains(settings.workDuration)
         for mins in workPresets {
             let item = NSMenuItem(title: "\(mins) min", action: #selector(SettingsMenuHandler.shared.setWorkDuration(_:)), keyEquivalent: "")
@@ -187,7 +187,7 @@ struct MainWindowView: View {
 
         // Short Break Duration submenu
         let shortBreakMenu = NSMenu()
-        let shortPresets = [3, 5, 10, 15]
+        let shortPresets = [5, 10, 15, 20]
         let shortIsCustom = !shortPresets.contains(settings.shortBreakDuration)
         for mins in shortPresets {
             let item = NSMenuItem(title: "\(mins) min", action: #selector(SettingsMenuHandler.shared.setShortBreakDuration(_:)), keyEquivalent: "")
@@ -209,7 +209,7 @@ struct MainWindowView: View {
 
         // Long Break Duration submenu
         let longBreakMenu = NSMenu()
-        let longPresets = [10, 15, 20, 30]
+        let longPresets = [10, 15, 20, 30, 60]
         let longIsCustom = !longPresets.contains(settings.longBreakDuration)
         for mins in longPresets {
             let item = NSMenuItem(title: "\(mins) min", action: #selector(SettingsMenuHandler.shared.setLongBreakDuration(_:)), keyEquivalent: "")
@@ -231,7 +231,9 @@ struct MainWindowView: View {
 
         // Sessions submenu
         let sessionsMenu = NSMenu()
-        for count in [2, 3, 4, 5, 6] {
+        let sessionsPresets = [2, 3, 4, 5, 6]
+        let sessionsIsCustom = !sessionsPresets.contains(settings.sessionsBeforeLongBreak)
+        for count in sessionsPresets {
             let item = NSMenuItem(title: "\(count) sessions", action: #selector(SettingsMenuHandler.shared.setSessions(_:)), keyEquivalent: "")
             item.target = SettingsMenuHandler.shared
             item.tag = count
@@ -240,6 +242,11 @@ struct MainWindowView: View {
             }
             sessionsMenu.addItem(item)
         }
+        sessionsMenu.addItem(NSMenuItem.separator())
+        let customSessionsItem = NSMenuItem(title: sessionsIsCustom ? "Custom (\(settings.sessionsBeforeLongBreak))..." : "Custom...", action: #selector(SettingsMenuHandler.shared.customSessions), keyEquivalent: "")
+        customSessionsItem.target = SettingsMenuHandler.shared
+        if sessionsIsCustom { customSessionsItem.state = .on }
+        sessionsMenu.addItem(customSessionsItem)
         let sessionsItem = NSMenuItem(title: "Sessions", action: nil, keyEquivalent: "")
         sessionsItem.submenu = sessionsMenu
         menu.addItem(sessionsItem)
@@ -311,10 +318,10 @@ class SettingsMenuHandler: NSObject {
         }
     }
 
-    private func showCustomDurationDialog(title: String, current: Int) -> Int? {
+    private func showCustomDurationDialog(title: String, current: Int, unit: String = "minutes") -> Int? {
         let alert = NSAlert()
         alert.messageText = title
-        alert.informativeText = "Enter duration in minutes:"
+        alert.informativeText = "Enter value in \(unit):"
         alert.addButton(withTitle: "OK")
         alert.addButton(withTitle: "Cancel")
 
@@ -335,6 +342,12 @@ class SettingsMenuHandler: NSObject {
 
     @objc func setSessions(_ sender: NSMenuItem) {
         Settings.shared.sessionsBeforeLongBreak = sender.tag
+    }
+
+    @objc func customSessions() {
+        if let value = showCustomDurationDialog(title: "Sessions", current: Settings.shared.sessionsBeforeLongBreak, unit: "sessions") {
+            Settings.shared.sessionsBeforeLongBreak = value
+        }
     }
 
     @objc func toggleAutoStart() {
