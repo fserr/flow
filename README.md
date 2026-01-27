@@ -16,8 +16,8 @@ This is a clone of [Flow](https://flowapp.info), the Pomodoro app. I wanted some
 
 - Menu bar timer (left-click: show window, right-click: start/pause)
 - Work sessions, short breaks, long breaks
-- Configurable durations
-- Keyboard shortcuts: Space (play/pause), Cmd+R (reset), Cmd+→ (skip)
+- Configurable durations with saved setups
+- Keyboard shortcuts: Space (play/pause), Cmd+R (reset), Cmd+→ (skip), Cmd+, (settings)
 
 ## Install
 

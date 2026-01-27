@@ -261,6 +261,46 @@ struct MainWindowView: View {
 
         menu.addItem(NSMenuItem.separator())
 
+        // Saved Setups submenu
+        let setupsMenu = NSMenu()
+        let currentSetupName = settings.currentSetup.displayName
+        for setup in settings.savedSetups {
+            let item = NSMenuItem(title: setup.displayName, action: #selector(SettingsMenuHandler.shared.applySetup(_:)), keyEquivalent: "")
+            item.target = SettingsMenuHandler.shared
+            item.representedObject = setup
+            if setup.displayName == currentSetupName {
+                item.state = .on
+            }
+            setupsMenu.addItem(item)
+        }
+        if !settings.savedSetups.isEmpty {
+            setupsMenu.addItem(NSMenuItem.separator())
+        }
+        let saveCurrentItem = NSMenuItem(title: "Save Current (\(currentSetupName))", action: #selector(SettingsMenuHandler.shared.saveCurrentSetup), keyEquivalent: "")
+        saveCurrentItem.target = SettingsMenuHandler.shared
+        if settings.savedSetups.contains(where: { $0.displayName == currentSetupName }) {
+            saveCurrentItem.isEnabled = false
+        }
+        setupsMenu.addItem(saveCurrentItem)
+        if !settings.savedSetups.isEmpty {
+            setupsMenu.addItem(NSMenuItem.separator())
+            let deleteMenu = NSMenu()
+            for setup in settings.savedSetups {
+                let deleteItem = NSMenuItem(title: setup.displayName, action: #selector(SettingsMenuHandler.shared.deleteSetup(_:)), keyEquivalent: "")
+                deleteItem.target = SettingsMenuHandler.shared
+                deleteItem.representedObject = setup
+                deleteMenu.addItem(deleteItem)
+            }
+            let deleteSubmenu = NSMenuItem(title: "Delete...", action: nil, keyEquivalent: "")
+            deleteSubmenu.submenu = deleteMenu
+            setupsMenu.addItem(deleteSubmenu)
+        }
+        let setupsItem = NSMenuItem(title: "Saved Setups", action: nil, keyEquivalent: "")
+        setupsItem.submenu = setupsMenu
+        menu.addItem(setupsItem)
+
+        menu.addItem(NSMenuItem.separator())
+
         // Auto-start toggle
         let autoStartItem = NSMenuItem(title: "Auto-Start Breaks", action: #selector(SettingsMenuHandler.shared.toggleAutoStart), keyEquivalent: "")
         autoStartItem.target = SettingsMenuHandler.shared
@@ -364,6 +404,22 @@ class SettingsMenuHandler: NSObject {
 
     @objc func toggleSound() {
         Settings.shared.playSoundOnComplete.toggle()
+    }
+
+    @objc func applySetup(_ sender: NSMenuItem) {
+        if let setup = sender.representedObject as? TimerSetup {
+            Settings.shared.applySetup(setup)
+        }
+    }
+
+    @objc func saveCurrentSetup() {
+        Settings.shared.saveCurrentSetup()
+    }
+
+    @objc func deleteSetup(_ sender: NSMenuItem) {
+        if let setup = sender.representedObject as? TimerSetup {
+            Settings.shared.deleteSetup(setup)
+        }
     }
 
     @objc func quit() {
