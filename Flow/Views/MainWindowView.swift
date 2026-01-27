@@ -65,7 +65,7 @@ struct MainWindowView: View {
 
     private var timerDisplay: some View {
         Text(timerManager.formattedTime)
-            .font(.system(size: 72, weight: .medium, design: .default))
+            .font(.system(size: 78, weight: .regular, design: .default))
             .foregroundColor(textColor)
             .monospacedDigit()
     }
