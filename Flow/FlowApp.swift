@@ -43,6 +43,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 return nil
             }
 
+            // CMD+Right Arrow - skip to next phase
+            if event.keyCode == 124 && event.modifierFlags.contains(.command) {
+                TimerManager.shared.skip()
+                return nil
+            }
+
             return event
         }
     }
