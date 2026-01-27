@@ -1,4 +1,4 @@
-# Flow2
+# Flow Pomodoro
 
 A minimal Pomodoro timer for macOS.
 
@@ -9,13 +9,21 @@ This is a clone of [Flow](https://flowapp.info), the Pomodoro app. I wanted some
 - Menu bar timer (left-click: show window, right-click: start/pause)
 - Work sessions, short breaks, long breaks
 - Configurable durations
+- Keyboard shortcuts: Space (play/pause), Cmd+R (reset), Cmd+→ (skip)
 
 ## Install
 
-Xcode is required.
+Download the latest DMG from [Releases](https://github.com/fserr/flow/releases), open it, and drag Flow2 to Applications.
+
+**First launch**: Right-click the app → Open → Click "Open" in the dialog (required once for unsigned apps).
+
+## Build from source
+
+Requires Xcode.
 
 ```bash
-open Flow2.xcodeproj
-# Press Cmd+R to build and run
-# Or build Release and copy Flow2.app to /Applications
+git clone https://github.com/fserr/flow.git
+cd flow
+open Flow.xcodeproj
+# Cmd+R to build and run
 ```
