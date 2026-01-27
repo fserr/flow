@@ -70,22 +70,30 @@ struct MainWindowView: View {
             .monospacedDigit()
     }
 
+    @ViewBuilder
     private var sessionDots: some View {
-        HStack(spacing: 6) {
-            ForEach(0..<settings.sessionsBeforeLongBreak, id: \.self) { index in
-                sessionDot(filled: index < timerManager.completedSessions, isFirst: index == 0)
+        if timerManager.currentPhase == .longBreak {
+            Text("UNWIND")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(.white)
+        } else {
+            HStack(spacing: 6) {
+                ForEach(0..<settings.sessionsBeforeLongBreak, id: \.self) { index in
+                    sessionDot(filled: index < timerManager.completedSessions, index: index)
+                }
             }
         }
     }
 
-    private func sessionDot(filled: Bool, isFirst: Bool) -> some View {
-        let isCurrentlyActive = timerManager.isRunning && timerManager.completedSessions == (isFirst ? 0 : timerManager.completedSessions)
+    private func sessionDot(filled: Bool, index: Int) -> some View {
+        let isCurrentSession = index == timerManager.completedSessions
+        let isCurrentlyActive = timerManager.isRunning && isCurrentSession && timerManager.currentPhase == .work
         let dotColor = isBreak
             ? (filled ? Color.white.opacity(0.9) : Color.white.opacity(0.4))
-            : (filled ? Color.gray.opacity(0.6) : Color.gray.opacity(0.3))
+            : (filled ? Color(red: 0.3, green: 0.5, blue: 0.42) : Color.gray.opacity(0.3))
         return Capsule()
             .fill(dotColor)
-            .frame(width: isCurrentlyActive && isFirst && timerManager.currentPhase == .work ? 20 : 8, height: 8)
+            .frame(width: isCurrentlyActive ? 20 : 8, height: 8)
             .animation(.easeInOut(duration: 0.2), value: timerManager.isRunning)
     }
 
