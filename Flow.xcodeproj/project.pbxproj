@@ -14,6 +14,8 @@
 		AA000009AAAAAA0900000009 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000AAAAAAA0A0000000A /* TimerManager.swift */; };
 		AA00000BAAAAAA0B0000000B /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000CAAAAAA0C0000000C /* MenuBarView.swift */; };
 		AA00000DAAAAAA0D0000000D /* MainWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000EAAAAAA0E0000000E /* MainWindowView.swift */; };
+		AA000024AAAAAA2400000024 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000025AAAAAA2500000025 /* SettingsTabView.swift */; };
+		AA000026AAAAAA2600000026 /* ContentContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000027AAAAAA2700000027 /* ContentContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		AA00000AAAAAAA0A0000000A /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		AA00000CAAAAAA0C0000000C /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		AA00000EAAAAAA0E0000000E /* MainWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
+		AA000025AAAAAA2500000025 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
+		AA000027AAAAAA2700000027 /* ContentContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 			children = (
 				AA00000CAAAAAA0C0000000C /* MenuBarView.swift */,
 				AA00000EAAAAAA0E0000000E /* MainWindowView.swift */,
+				AA000025AAAAAA2500000025 /* SettingsTabView.swift */,
+				AA000027AAAAAA2700000027 /* ContentContainerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +175,8 @@
 				AA000009AAAAAA0900000009 /* TimerManager.swift in Sources */,
 				AA00000BAAAAAA0B0000000B /* MenuBarView.swift in Sources */,
 				AA00000DAAAAAA0D0000000D /* MainWindowView.swift in Sources */,
+				AA000024AAAAAA2400000024 /* SettingsTabView.swift in Sources */,
+				AA000026AAAAAA2600000026 /* ContentContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

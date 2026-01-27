@@ -31,27 +31,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
             guard self?.mainWindow?.isKeyWindow == true else { return event }
 
-            // Spacebar - toggle timer
-            if event.keyCode == 49 {
+            // Spacebar - toggle timer (only when not in settings)
+            if event.keyCode == 49 && !ViewState.shared.showSettings {
                 TimerManager.shared.toggle()
                 return nil
             }
 
-            // CMD+R - reset timer
-            if event.keyCode == 15 && event.modifierFlags.contains(.command) {
+            // CMD+R - reset timer (only when not in settings)
+            if event.keyCode == 15 && event.modifierFlags.contains(.command) && !ViewState.shared.showSettings {
                 TimerManager.shared.reset()
                 return nil
             }
 
-            // CMD+Right Arrow - skip to next phase
-            if event.keyCode == 124 && event.modifierFlags.contains(.command) {
+            // CMD+Right Arrow - skip to next phase (only when not in settings)
+            if event.keyCode == 124 && event.modifierFlags.contains(.command) && !ViewState.shared.showSettings {
                 TimerManager.shared.skip()
                 return nil
             }
 
-            // Escape - close window
+            // CMD+, - toggle settings
+            if event.keyCode == 43 && event.modifierFlags.contains(.command) {
+                ViewState.shared.showSettings.toggle()
+                return nil
+            }
+
+            // Escape - close window or go back from settings
             if event.keyCode == 53 {
-                self?.mainWindow?.orderOut(nil)
+                if ViewState.shared.showSettings {
+                    ViewState.shared.showSettings = false
+                } else {
+                    self?.mainWindow?.orderOut(nil)
+                }
                 return nil
             }
 
@@ -76,7 +86,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func createAndShowMainWindow() {
-        let contentView = MainWindowView(timerManager: TimerManager.shared, settings: Settings.shared)
+        let contentView = ContentContainerView(
+            timerManager: TimerManager.shared,
+            settings: Settings.shared,
+            viewState: ViewState.shared
+        )
 
         let window = BorderlessWindow(
             contentRect: NSRect(x: 0, y: 0, width: 320, height: 280),
@@ -91,10 +105,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.center()
         window.contentView = NSHostingView(rootView: contentView)
         window.isReleasedWhenClosed = false
-        window.makeKeyAndOrderFront(nil)
 
         self.mainWindow = window
-        NSApp.activate(ignoringOtherApps: true)
+
+        if Settings.shared.showWindowAtLaunch {
+            window.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+        }
     }
 
     @objc private func handleClick() {
@@ -122,6 +139,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return false
+    }
+
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if let window = mainWindow {
+            window.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+        }
         return false
     }
 }
