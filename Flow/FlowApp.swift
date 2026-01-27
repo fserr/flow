@@ -118,10 +118,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let event = NSApp.currentEvent else { return }
 
         if event.type == .rightMouseUp {
-            TimerManager.shared.toggle()
+            if event.modifierFlags.contains(.command) {
+                showSettingsMenu()
+            } else {
+                TimerManager.shared.toggle()
+            }
         } else {
             toggleMainWindow()
         }
+    }
+
+    private func showSettingsMenu() {
+        guard let button = statusItem?.button else { return }
+        let menu = SettingsMenuBuilder.buildMenu()
+        menu.popUp(positioning: nil, at: NSPoint(x: 0, y: button.bounds.height + 5), in: button)
     }
 
     private func toggleMainWindow() {
