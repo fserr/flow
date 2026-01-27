@@ -94,8 +94,8 @@ final class TimerManager: ObservableObject {
 
         transitionToNextPhase()
 
-        if settings.autoStartBreak || !currentPhase.isBreak {
-            // Auto-start if setting enabled, or if transitioning to work (auto-start work after break)
+        if settings.autoStartBreak {
+            start()
         }
     }
 
