@@ -49,6 +49,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 return nil
             }
 
+            // Escape - close window
+            if event.keyCode == 53 {
+                self?.mainWindow?.orderOut(nil)
+                return nil
+            }
+
             return event
         }
     }
