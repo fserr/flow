@@ -1,8 +1,8 @@
 # Flow Pomodoro
 
-A minimal Pomodoro timer for macOS.
+A minimal pomodoro timer for macOS, fully inspired by [Flow](https://flowapp.info). 
 
-This is a clone of [Flow](https://flowapp.info), the Pomodoro app. I wanted something similar with minimal features and the customization options without paying for a subscription plan. The entire app was written by Claude Code (Opus 4.5) - I just described what I wanted.
+The entire app was written by Claude Code (Opus 4.5), with little manual intervention.
 
 ## How it does look like
 
