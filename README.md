@@ -10,6 +10,14 @@ This is a clone of [Flow](https://flowapp.info), the Pomodoro app. I wanted some
   <img src="screenshots/session.png" width="280" alt="Work session">
   &nbsp;&nbsp;
   <img src="screenshots/break.png" width="280" alt="Break">
+  &nbsp;&nbsp;
+  <img src="screenshots/settings.png" alt="Break">
+
+  <img src="screenshots/session-menu.png" width="280" alt="Work session">
+  &nbsp;&nbsp;
+  <img src="screenshots/break-menu.png" width="280" alt="Break">
+  
+  
 </p>
 
 ## Features
