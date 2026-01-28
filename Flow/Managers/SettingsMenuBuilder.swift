@@ -135,11 +135,17 @@ class SettingsMenuBuilder {
 
         menu.addItem(NSMenuItem.separator())
 
-        // Auto-start toggle
-        let autoStartItem = NSMenuItem(title: "Auto-Start Breaks", action: #selector(SettingsMenuHandler.shared.toggleAutoStart), keyEquivalent: "")
-        autoStartItem.target = SettingsMenuHandler.shared
-        autoStartItem.state = settings.autoStartBreak ? .on : .off
-        menu.addItem(autoStartItem)
+        // Auto-start breaks toggle
+        let autoStartBreakItem = NSMenuItem(title: "Auto-Start Breaks", action: #selector(SettingsMenuHandler.shared.toggleAutoStartBreak), keyEquivalent: "")
+        autoStartBreakItem.target = SettingsMenuHandler.shared
+        autoStartBreakItem.state = settings.autoStartBreak ? .on : .off
+        menu.addItem(autoStartBreakItem)
+
+        // Auto-start work toggle
+        let autoStartWorkItem = NSMenuItem(title: "Auto-Start Work", action: #selector(SettingsMenuHandler.shared.toggleAutoStartWork), keyEquivalent: "")
+        autoStartWorkItem.target = SettingsMenuHandler.shared
+        autoStartWorkItem.state = settings.autoStartWork ? .on : .off
+        menu.addItem(autoStartWorkItem)
 
         // Sound toggle
         let soundItem = NSMenuItem(title: "Sound on Completion", action: #selector(SettingsMenuHandler.shared.toggleSound), keyEquivalent: "")
@@ -229,8 +235,12 @@ class SettingsMenuHandler: NSObject {
         }
     }
 
-    @objc func toggleAutoStart() {
+    @objc func toggleAutoStartBreak() {
         Settings.shared.autoStartBreak.toggle()
+    }
+
+    @objc func toggleAutoStartWork() {
+        Settings.shared.autoStartWork.toggle()
     }
 
     @objc func toggleSound() {

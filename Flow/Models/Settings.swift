@@ -21,6 +21,7 @@ final class Settings: ObservableObject {
     @AppStorage("longBreakDuration") var longBreakDuration: Int = 15
     @AppStorage("sessionsBeforeLongBreak") var sessionsBeforeLongBreak: Int = 4
     @AppStorage("autoStartBreak") var autoStartBreak: Bool = false
+    @AppStorage("autoStartWork") var autoStartWork: Bool = false
     @AppStorage("playSoundOnComplete") var playSoundOnComplete: Bool = true
     @AppStorage("showWindowAtLaunch") var showWindowAtLaunch: Bool = true
 

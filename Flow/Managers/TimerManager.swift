@@ -92,9 +92,13 @@ final class TimerManager: ObservableObject {
             playCompletionSound()
         }
 
+        let wasWorkPhase = currentPhase == .work
         transitionToNextPhase()
 
-        if settings.autoStartBreak {
+        // Auto-start based on what phase we're entering
+        if wasWorkPhase && settings.autoStartBreak {
+            start()
+        } else if !wasWorkPhase && settings.autoStartWork {
             start()
         }
     }

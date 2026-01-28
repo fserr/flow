@@ -8,9 +8,14 @@ struct MenuBarView: View {
         colorScheme == .dark ? Color.white : Color.black
     }
 
+    private var textColor: Color {
+        timerManager.currentPhase.isBreak ? .white : .primary
+    }
+
     var body: some View {
         Text(timerManager.formattedTime)
             .font(.system(size: 11, weight: .medium, design: .default))
+            .foregroundColor(textColor)
             .padding(.horizontal, 4)
             .padding(.vertical, 1)
             .background(
