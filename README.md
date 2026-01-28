@@ -6,18 +6,28 @@ This is a clone of [Flow](https://flowapp.info), the Pomodoro app. I wanted some
 
 ## How it does look like
 
-<p>
-  <img src="screenshots/session.png" width="280" alt="Work session">
-  &nbsp;&nbsp;
-  <img src="screenshots/break.png" width="280" alt="Break">
-  &nbsp;&nbsp;
-  <img src="screenshots/settings.png" alt="Break">
+### Main Window
 
-  <img src="screenshots/session-menu.png" width="280" alt="Work session">
+<p>
+  <img src="screenshots/session.png" alt="Work session">
   &nbsp;&nbsp;
-  <img src="screenshots/break-menu.png" width="280" alt="Break">
-  
-  
+  <img src="screenshots/break.png" alt="Break">
+</p>
+
+### Menu Bar
+
+<p>
+  <img src="screenshots/session-menu.png" alt="Work menu">
+  &nbsp;&nbsp;
+  <img src="screenshots/break-menu.png" alt="Break menu">
+</p>
+
+### Settings
+
+<p>
+  <img src="screenshots/settings-2.png" alt="Session settings">
+  &nbsp;&nbsp;
+  <img src="screenshots/settings-1.png" alt="App settings">
 </p>
 
 ## Features
