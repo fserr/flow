@@ -1,6 +1,6 @@
 # Flow Pomodoro
 
-A minimal Pomodoro timer for macOS. Built with Swift and SwiftUI, zero dependencies. Sits in your menu bar, stays out of your way.
+A minimal Pomodoro timer for macOS. Built with Swift and SwiftUI.
 
 Inspired by [Flow](https://flowapp.info) -- I wanted the same core experience without the subscription and the bloat. The result is a ~1.5 MB app (vs ~70 MB for the original) that does everything I need: work sessions, breaks, configurable durations, saved setups, and keyboard-driven control.
 
