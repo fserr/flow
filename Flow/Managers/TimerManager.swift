@@ -11,6 +11,7 @@ final class TimerManager: ObservableObject {
     @Published var completedSessions: Int = 0
 
     private var timer: AnyCancellable?
+    private var endTime: Date?
     private let settings = Settings.shared
 
     var formattedTime: String {
@@ -38,11 +39,28 @@ final class TimerManager: ObservableObject {
 
     private init() {
         resetToCurrentPhase()
+        setupWakeNotification()
+    }
+
+    private func setupWakeNotification() {
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self,
+            selector: #selector(systemDidWake),
+            name: NSWorkspace.didWakeNotification,
+            object: nil
+        )
+    }
+
+    @objc private func systemDidWake() {
+        if isRunning {
+            updateTimeFromEndTime()
+        }
     }
 
     func start() {
         guard !isRunning else { return }
         isRunning = true
+        endTime = Date().addingTimeInterval(Double(timeRemaining))
         timer = Timer.publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
@@ -54,6 +72,7 @@ final class TimerManager: ObservableObject {
         isRunning = false
         timer?.cancel()
         timer = nil
+        endTime = nil
     }
 
     func toggle() {
@@ -76,13 +95,19 @@ final class TimerManager: ObservableObject {
         transitionToNextPhase()
     }
 
-    private func tick() {
-        guard timeRemaining > 0 else { return }
-        timeRemaining -= 1
-
-        if timeRemaining == 0 {
+    private func updateTimeFromEndTime() {
+        guard let endTime = endTime else { return }
+        let remaining = Int(endTime.timeIntervalSinceNow)
+        if remaining <= 0 {
+            timeRemaining = 0
             onPhaseComplete()
+        } else {
+            timeRemaining = remaining
         }
+    }
+
+    private func tick() {
+        updateTimeFromEndTime()
     }
 
     private func onPhaseComplete() {

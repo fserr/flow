@@ -19,7 +19,7 @@ struct MenuBarView: View {
             .padding(.horizontal, 4)
             .padding(.vertical, 1)
             .background(
-                RoundedRectangle(cornerRadius: 6)
+                RoundedRectangle(cornerRadius: 4)
                     .fill(timerManager.currentPhase.backgroundColor)
             )
             .overlay(
