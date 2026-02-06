@@ -9,22 +9,26 @@ struct MenuBarView: View {
     }
 
     private var textColor: Color {
-        timerManager.currentPhase.isBreak ? .white : .primary
+        if timerManager.currentPhase.isBreak {
+            return .white
+        } else {
+            return colorScheme == .dark ? .white : .black
+        }
     }
 
     var body: some View {
         Text(timerManager.formattedTime)
-            .font(.system(size: 11, weight: .medium, design: .default))
+            .font(.system(size: 11, weight: .regular, design: .default))
             .foregroundColor(textColor)
             .padding(.horizontal, 4)
             .padding(.vertical, 1)
             .background(
-                RoundedRectangle(cornerRadius: 4)
+                RoundedRectangle(cornerRadius: 4, style: .continuous)
                     .fill(timerManager.currentPhase.backgroundColor)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 6)
-                    .stroke(borderColor, lineWidth: timerManager.currentPhase == .work ? 0.5 : 0)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5, style: .continuous)
+                            .strokeBorder(borderColor, lineWidth: timerManager.currentPhase == .work ? 1 : 0)
+                    )
             )
     }
 }
