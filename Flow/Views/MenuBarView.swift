@@ -20,13 +20,13 @@ struct MenuBarView: View {
         Text(timerManager.formattedTime)
             .font(.system(size: 11, weight: .regular, design: .default))
             .foregroundColor(textColor)
-            .padding(.horizontal, 4)
+            .padding(.horizontal, 6)
             .padding(.vertical, 1)
             .background(
-                RoundedRectangle(cornerRadius: 4, style: .continuous)
+                RoundedRectangle(cornerRadius: 6, style: .continuous)
                     .fill(timerManager.currentPhase.backgroundColor)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 5, style: .continuous)
+                        RoundedRectangle(cornerRadius: 6, style: .continuous)
                             .strokeBorder(borderColor, lineWidth: timerManager.currentPhase == .work ? 1 : 0)
                     )
             )
