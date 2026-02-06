@@ -40,7 +40,8 @@ struct MainWindowView: View {
                     Spacer()
                     settingsButton
                 }
-                .padding(16)
+                .padding(.horizontal, 10)
+                .padding(.top, 2)
                 Spacer()
             }
             .opacity(isHovering ? 1 : 0)
