@@ -18,7 +18,7 @@ struct MenuBarView: View {
 
     var body: some View {
         Text(timerManager.formattedTime)
-            .font(.system(size: 11, weight: .regular, design: .default))
+            .font(.system(size: 11, weight: .regular, design: .default).monospacedDigit())
             .foregroundColor(textColor)
             .padding(.horizontal, 6)
             .padding(.vertical, 1)
